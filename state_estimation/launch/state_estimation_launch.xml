@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="mapping_bool" default="True"/>
+    <arg name="racecar_version" default="NUC2"/>
+    <arg name="map_name" default="hangar" />
+    <arg name="frenet_bool" default="False" />
+    <arg name="skip_early_fusion" default="False" />
+    <arg name="use_sim_time" default="False" />
+
+    <!-- EKF: IMU + Odom Fusion = velocity 추정 -->
+    <group unless="$(var skip_early_fusion)">
+        <include file="$(find-pkg-share state_estimation)/launch/ekf_launch.py"/>
+    </group>
+
+    <!-- PF Localization: pose 추정 -->
+    <include file="$(find-pkg-share particle_filter)/launch/localize_launch.py">
+    </include>
+    
+    <!-- Carstate Node -->
+    <!--
+    <node name="carstate_node" pkg="state_estimation" exec="carstate_node" args="" output='screen'>
+        <remap from="/odom_out" to="/car_state/odom" />
+        <param name="frenet_bool" value="$(var frenet_bool)" />
+        <param name="use_sim_time" value="$(var use_sim_time)" />
+    </node>
+    --> 
+
+    <node
+      name="frenet_odom_republisher"
+      pkg="frenet_odom_republisher"
+      exec="frenet_odom_republisher_node"
+      output="screen">
+    </node>  
+
+    <!-- <param name="use_sim_time" value="true"/> -->
+
+
+
+</launch>

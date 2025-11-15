@@ -1,0 +1,42 @@
+<launch>
+
+  <!-- 1. EKF 필터 노드(state_estimation/ekf_launch.py) -->
+  <include file="$(find-pkg-share state_estimation)/launch/ekf_launch.py"> 
+    <!--인자 전달 -->
+    <arg name="use_sim_time" value="true"/> 
+  </include>
+
+  <!-- 2. 파티클 필터 노드(particle_filter/localize_launch.py) -->
+  <include file="$(find-pkg-share particle_filter)/launch/localize_launch.py"> 
+    <arg name="use_sim_time" value="true"/> 
+  </include> 
+
+
+  <!-- 3. Frenet Odom Republisher 본체 -->
+  <!-- <node
+      name="frenet_odom_republisher"
+      pkg="frenet_odom_republisher"
+      exec="frenet_odom_republisher_node"
+      output="screen">
+    <param name="use_sim_time" value="true"/>
+  </node>   -->
+
+  <node
+      name="frenet_odom_republisher"
+      pkg="frenet_odom_republisher_cpp"
+      exec="frenet_odom_republisher"
+      output="screen">
+    <param name="use_sim_time" value="true"/>
+  </node>  
+ 
+
+    <!-- Carstate Node -->
+  <!--
+  <node name="carstate_node" pkg="state_estimation" exec="carstate_node" args="" output='screen'>
+     <remap from="/odom_out" to="/car_state/odom" />
+     <param name="frenet_bool" value="$(var frenet_bool)" />
+     <param name="use_sim_time" value="$(var use_sim_time)" />
+  </node>
+  -->
+      
+</launch>

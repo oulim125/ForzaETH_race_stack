@@ -1,0 +1,26 @@
+ot_interpolator:
+  ros__parameters:
+    n_sectors: 5
+    yeet_factor: 1.25
+    spline_len: 30
+    ot_sector_begin: 0.5
+    Overtaking_sector0:
+      start: 0
+      end: 94
+      ot_flag: false
+    Overtaking_sector1:
+      start: 95
+      end: 142
+      ot_flag: false
+    Overtaking_sector2:
+      start: 143
+      end: 178
+      ot_flag: false
+    Overtaking_sector3:
+      start: 179
+      end: 245
+      ot_flag: false
+    Overtaking_sector4:
+      start: 246
+      end: 246
+      ot_flag: false

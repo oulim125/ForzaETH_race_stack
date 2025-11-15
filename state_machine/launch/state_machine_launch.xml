@@ -1,0 +1,27 @@
+<launch>
+  <!-- 기본 모드/로그레벨 -->
+  <arg name="mode" default="timetrials" description="choose between: dummy / timetrials"/>
+  <arg name="log-level" default="info"/>
+
+  <!-- ★ 섹터 게이팅용 파라미터 -->
+  <arg name="map_name" default="teras"/>
+  <arg name="pp_node_name" default="/controller_small"/>
+  <arg name="tln_node_name" default="/tln_inference"/>
+
+  <node pkg="state_machine"
+        name="state_machine"
+        exec="state_machine"
+        output="screen"
+        args="--ros-args --log-level state_machine:=$(var log-level)">
+    <!-- 공용 파라미터 파일 -->
+    <param from="$(find-pkg-share stack_master)/config/state_machine_params.yaml"/>
+
+    <!-- 동작 모드 -->
+    <param name="mode" value="$(var mode)"/>
+
+    <!-- ★ 섹터 게이팅 키 -->
+    <param name="map_name" value="$(var map_name)"/>
+    <param name="pp_node_name" value="$(var pp_node_name)"/>
+    <param name="tln_node_name" value="$(var tln_node_name)"/>
+  </node>
+</launch>

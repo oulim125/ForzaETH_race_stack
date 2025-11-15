@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- arguments -->
+  <arg name="LU_table" default="NUC2_hangar_pacejka"/>
+  <arg name="mode" default="MAP" description="Mode of operation: MAP / PP / (FTG). methods in brackets have not been implemented"/>
+  <arg name="mapping" default="false"/>
+
+  <!-- launch controller_manager node -->
+  <node pkg="controller_cpp" exec="controller_manager_cpp" name="controller" output="screen">
+    <param name="mode" value="$(var mode)"/>
+    <param name="LU_table" value="$(var LU_table)"/>
+    <param name="mapping" value="$(var mapping)"/>
+  </node>
+</launch>

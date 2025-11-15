@@ -1,17 +1,8 @@
 GUI applications in remote containers are a bit of a pain in the neck. Which makes GUI applications in remote VSCode devcontainers are even more of a pain.
 
 ## GUI applications in remote Docker containers
-If you want to launch a GUI application from a remote docker container, as for example during [mapping](https://git.ee.ethz.ch/pbl/research/f1tenth/race_stack/-/tree/master/base_system/pbl_f110_system?ref_type=heads#mapping), a couple of specific steps need to be taken. 
+If you want to launch a GUI application from a remote docker container, as for example during [mapping](https://git.ee.ethz.ch/pbl/research/f1tenth2/race_stack/-/tree/master/base_system/pbl_f110_system?ref_type=heads#mapping), a couple of specific steps need to be taken. 
 
-## Using your fancy bashrc alias
-If you built your container, you should have an alias `dsshcar` in your bashrc from [here](../.devcontainer/.install_utils/bashrc_ext), which allows you to SSH into the car and the car's running `forzaeth_devcontainer` with the correct environment variables set. 
-```bash
-dsshcar <your_username_on_the_car>@<car_ip>
-```
-Thats it. Now you can run any GUI application from the container, and it will be displayed on your local machine. Try it out with `xeyes` which is a simple GUI application that displays a pair of eyes that follow your mouse cursor. 
-
-
-## [DEPRECATED] GUI applications in remote Docker containers
 1. Connect to a car via SSH, enabling X forwarding with the `-X` flag: 
 ```bash
 ssh -X <username>@<car_ip>
@@ -56,7 +47,7 @@ non-network local connections being added to access control list
 xhost:  must be on local machine to add or remove hosts.
 ```
 
-3. Mmeorize the `DISPLAY` number in this SSH-connected terminal, afeter printing it to screen:
+3. Memorize the `DISPLAY` number in this SSH-connected terminal, after printing it to screen:
 ```bash
 echo $DISPLAY
 ```
@@ -71,8 +62,9 @@ localhost:10.0
 
 5. In the devcontainer terminal where you want to use the GUI application, export now the `DISPLAY` variable number. For example:
 ```bash
-export DISPLAY=:10.0
+export DISPLAY=localhost:10.0
 ```
+**Note**: use the full name as from the output of point 3.
  
 6. Enjoy a terminal with GUI forwarding!
 

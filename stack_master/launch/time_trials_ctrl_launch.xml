@@ -1,0 +1,43 @@
+<launch>
+  <arg name="racecar_version" default="NUC2" />
+  <arg name="LU_table" default="NUC2_hangar_pacejka" />
+  <arg name="ctrl_algo" default="MAP" />
+  <arg name="measure" default="False" />
+
+  <!-- ★ 추가: 맵 이름 인자 -->
+  <arg name="map_name" default="teras"/>
+
+  <!-- 기존 -->
+  <let name="param_file" value="$(find-pkg-share stack_master)/config/$(var racecar_version)/l1_params.yaml"/>
+
+  <!-- controller (PP) -->
+  <include file="$(find-pkg-share controller)/launch/controller_small_launch.xml">
+    <arg name="mode" value="$(var ctrl_algo)"/>
+    <arg name="param_file" value="$(find-pkg-share stack_master)/config/state_machine_params.yaml"/>
+    <arg name="mapping" value="False"/>
+    <!-- 여기서 노드명이 controller_manager_small로 뜨도록 되어 있어야 함 -->
+  </include>
+
+  <!-- ★ TLN inference 노드 추가 -->
+  <node pkg="ofc" exec="tln_inference" name="tln_inference" output="screen">
+    <!-- 초기값은 false; 섹터 전환 시 state_machine이 바꿔줌 -->
+    <param name="drive_publish_enabled" value="false"/>
+    <!-- 필요하면 drive_topic/scan_topic 등 추가 파라미터 설정 -->
+    <!-- <param name="drive_topic" value="/drive"/> -->
+  </node>
+
+  <!-- state machine -->
+  <include file="$(find-pkg-share state_machine)/launch/state_machine_launch.xml">
+    <arg name="param_file" value="$(find-pkg-share stack_master)/config/state_machine_params.yaml"/>
+    <arg name="mode" value="timetrials"/>
+    <arg name="overtake_mode" value="dummy"/>
+
+    <!-- ★ 추가: 섹터 게이팅에 필요한 3개 arg 전달 -->
+    <arg name="map_name" value="$(var map_name)"/>
+    <arg name="pp_node_name" value="/controller_small"/>
+    <arg name="tln_node_name" value="/tln_inference"/>
+  </include>
+</launch>
+
+
+

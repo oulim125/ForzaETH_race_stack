@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>perception_cpp</name>
+  <version>0.0.1</version>
+  <description>CPP perception: detect + tracking</description>
+  <maintainer email="you@example.com">you</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>visualization_msgs</depend>
+  <depend>f110_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf2_geometry_msgs</depend>
+  <depend>yaml-cpp</depend>
+  <depend>frenet_conversion_cpp</depend>
+
+  <!-- Eigen3: 빌드 시 모듈, 런타임 라이브러리 -->
+  <build_depend>eigen3_cmake_module</build_depend>
+  <exec_depend>eigen</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+  
+</package>

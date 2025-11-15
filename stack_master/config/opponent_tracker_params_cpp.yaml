@@ -1,0 +1,17 @@
+detect:
+  ros__parameters:
+    rate: 40
+    lambda: 10
+    sigma: 0.03
+    min_2_points_dist: 0.01
+    # min_obs_size: 15
+    # max_obs_size: 0.2
+
+    min_obs_size: 6
+    # max_obs_size: 0.4
+    max_obs_size: 0.7
+
+    max_viewing_distance: 7.0
+    # boundaries_inflation: -0.2
+    # boundaries_inflation: 1.0
+    boundaries_inflation: 0.2

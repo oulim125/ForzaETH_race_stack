@@ -1,0 +1,88 @@
+sector_tuner:
+  ros__parameters:
+    global_limit: 0.5
+    n_sectors: 14
+    Sector0:
+      start: 0
+      end: 13
+      scaling: 0.5
+      only_FTG: false
+      no_FTG: false
+    Sector1:
+      start: 14
+      end: 29
+      scaling: 0.5
+      only_FTG: false
+      no_FTG: false
+    Sector2:
+      start: 30
+      end: 42
+      scaling: 0.4
+      only_FTG: false
+      no_FTG: false
+    Sector3:
+      start: 43
+      end: 56
+      scaling: 0.4
+      only_FTG: false
+      no_FTG: false
+    Sector4:
+      start: 57
+      end: 64
+      scaling: 0.4
+      only_FTG: false
+      no_FTG: false
+    Sector5:
+      start: 65
+      end: 72
+      scaling: 0.4
+      only_FTG: false
+      no_FTG: false
+    Sector6:
+      start: 73
+      end: 96
+      scaling: 0.5
+      only_FTG: false
+      no_FTG: false
+    Sector7:
+      start: 97
+      end: 108
+      scaling: 0.5
+      only_FTG: false
+      no_FTG: false
+    Sector8:
+      start: 109
+      end: 131
+      scaling: 0.5
+      only_FTG: false
+      no_FTG: false
+    Sector9:
+      start: 132
+      end: 151
+      scaling: 0.5
+      only_FTG: false
+      no_FTG: false
+    Sector10:
+      start: 152
+      end: 163
+      scaling: 0.5
+      only_FTG: false
+      no_FTG: false
+    Sector11:
+      start: 164
+      end: 174
+      scaling: 0.5
+      only_FTG: false
+      no_FTG: false
+    Sector12:
+      start: 175
+      end: 245
+      scaling: 0.5
+      only_FTG: false
+      no_FTG: false
+    Sector13:
+      start: 246
+      end: 246
+      scaling: 0.5
+      only_FTG: false
+      no_FTG: false
